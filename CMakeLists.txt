@@ -114,6 +114,10 @@ function (googleapis_cpp_set_version_and_alias short_name)
                                      "${GOOGLE_APIS_CPP_PROTOS_VERSION}"
                                      SOVERSION
                                      ${GOOGLEAPIS_CPP_PROTOS_VERSION_MAJOR})
+    if (WIN32)
+        set_target_properties("googleapis_cpp_${short_name}"
+                              PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS "ON")
+    endif ()
     add_library("googleapis-c++::${short_name}" ALIAS
                 "googleapis_cpp_${short_name}")
 endfunction ()
